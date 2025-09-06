@@ -1,6 +1,10 @@
 *{
     font-family: "Inter", sans-serif;
 }
+.active{
+    background-color: #14532D;
+    color: white;
+}
 
 
 @import "tailwindcss"
