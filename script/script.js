@@ -8,14 +8,10 @@ const removeActive = () => {
 const manageSpinner = (status) => {
   if (status === true) {
     document.getElementById("sppinner").classList.remove("hidden");
-    document
-      .getElementById("plants-container")
-      .classList.add("hidden");
+    document.getElementById("plants-container").classList.add("hidden");
   } else {
     document.getElementById("plants-container").classList.remove("hidden");
-    document
-      .getElementById("sppinner")
-      .classList.add("hidden");
+    document.getElementById("sppinner").classList.add("hidden");
   }
 };
 
@@ -133,7 +129,7 @@ const displayCategoryByPlants = (categoryByPlants) => {
   for (const categoryByPlant of categoryByPlants) {
     const categoryCard = document.createElement("div");
     categoryCard.innerHTML = `
-        <div class="card p-4 bg-white space-y-3 ">
+        <div class="card p-4 bg-white space-y-3 shadow-lg ">
               <img class="h-80 rounded-md" src="${categoryByPlant.image}" alt="">
               <h1 onclick="loadPlantDetail(${categoryByPlant.id})" class="text-xl font-bold">${categoryByPlant.name}</h1>
               <p class="text-[#1F2937]">${categoryByPlant.description}</p>
@@ -176,7 +172,7 @@ const displayPlants = (plants) => {
     // console.log(plant.id);
     const card = document.createElement("div");
     card.innerHTML = `
-        <div class="card p-4 bg-white space-y-3 ">
+        <div class="card p-4 bg-white space-y-3 shadow-lg ">
               <img class="h-80 rounded-md" src="${plant.image}" alt="">
               <h1 onclick="loadPlantDetail(${plant.id})"  class="text-xl font-bold">${plant.name}</h1>
               <p class="text-[#1F2937]">${plant.description}</p>
