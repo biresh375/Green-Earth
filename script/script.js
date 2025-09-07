@@ -5,6 +5,20 @@ const removeActive = () => {
   allactiveClass.forEach((btn) => btn.classList.remove("active"));
 };
 
+const manageSpinner = (status) => {
+  if (status === true) {
+    document.getElementById("sppinner").classList.remove("hidden");
+    document
+      .getElementById("plants-container")
+      .classList.add("hidden");
+  } else {
+    document.getElementById("plants-container").classList.remove("hidden");
+    document
+      .getElementById("sppinner")
+      .classList.add("hidden");
+  }
+};
+
 const allPlantsLoad = () => {
   fetch("https://openapi.programming-hero.com/api/plants")
     .then((res) => res.json())
@@ -17,6 +31,7 @@ const loadCategory = () => {
     .then((category) => displayCategories(category.categories));
 };
 const loadCategoryByPlants = (id) => {
+  manageSpinner(true);
   // console.log(id);
   const url = `https://openapi.programming-hero.com/api/category/${id}`;
   fetch(url)
@@ -48,54 +63,47 @@ const addToCard = (id) => {
     });
 };
 
-
-
-
 const displayYourCard = (cardDetail) => {
-  alert(`${cardDetail.name} add your card`)
-  let totalPrice =Number(document.getElementById("totalPrice").innerText);
-  const treePrice =Number(cardDetail.price)
-   totalPrice =totalPrice+treePrice;
+  alert(`${cardDetail.name} added your card`);
+  let totalPrice = Number(document.getElementById("totalPrice").innerText);
+  const treePrice = Number(cardDetail.price);
+  totalPrice = totalPrice + treePrice;
   // console.log(totalPrice);
-  document.getElementById("totalPrice").innerText=totalPrice;
-  
+  document.getElementById("totalPrice").innerText = totalPrice;
+
   const yourcard = document.getElementById("yourCardContainer");
   const newCard = document.createElement("div");
   newCard.innerHTML = `
               <div class="p-2 mb-2 bg-white w-full rounded-md flex justify-between gap-2">
                 <div>
                   <h1 class="text-nowrap font-semibold text-xl">${cardDetail.name}</h1>
-                  <p class="ml-5">৳<span>${cardDetail.price}</span></p>
+                  <p >৳<span>${cardDetail.price}</span></p>
                 </div>
                 <div><span class="remove">❌</span></div>
               </div>`;
-    yourcard.append(newCard);
+  yourcard.append(newCard);
+};
 
-  };
-  
-  // console.log(totalPrice);
-  const yourCardContainer=document.getElementById("yourCardContainer")
-  yourCardContainer.addEventListener('click',(e)=>{
-    // console.log(e.target);
-    if(e.target.classList.contains("remove")){
-      alert("removed clicked");
-      const parent = e.target.parentElement.parentElement
-      // console.log(parent);
-      const price =Number(parent.firstElementChild.lastElementChild.lastElementChild.innerText)
+// console.log(totalPrice);
+const yourCardContainer = document.getElementById("yourCardContainer");
+yourCardContainer.addEventListener("click", (e) => {
+  // console.log(e.target);
+  if (e.target.classList.contains("remove")) {
+    const parent = e.target.parentElement.parentElement;
+    // console.log(parent);
+    const price = Number(
+      parent.firstElementChild.lastElementChild.lastElementChild.innerText
+    );
 
-      let totalPrice =Number(document.getElementById("totalPrice").innerText)
-      totalPrice = totalPrice-price;
-      document.getElementById("totalPrice").innerText = totalPrice;
+    let totalPrice = Number(document.getElementById("totalPrice").innerText);
+    totalPrice = totalPrice - price;
+    document.getElementById("totalPrice").innerText = totalPrice;
 
-      parent.remove()
-    }
+    parent.remove();
+  }
+});
 
-  })
-
-
-
-
-  // "id": 1,
+// "id": 1,
 // "image": "https://i.ibb.co.com/cSQdg7tf/mango-min.jpg",
 // "name": "Mango Tree",
 // "description": "A fast-growing tropical tree that produces delicious, juicy mangoes during summer. Its dense green canopy offers shade, while its sweet fruits are rich in vitamins and minerals.",
@@ -140,6 +148,7 @@ const displayCategoryByPlants = (categoryByPlants) => {
         `;
     plantsContainer.append(categoryCard);
   }
+  manageSpinner(false);
 };
 const displayCategories = (categories) => {
   const categoryContainer = document.getElementById("categoryContainer");
