@@ -121,16 +121,23 @@
         <h1 class="text-center text-[#1F2937] text-3xl font-bold">
           Choose Your Trees
         </h1>
-        <div class="flex justify-between mt-5 gap-8">
-          <div>
+        <div class="md:flex justify-between mt-5 gap-8">
+          <div class="text-center md:text-left">
             <h1 class="font-bold text-xl">Categories</h1>
-            <div id="categoryContainer">
-             
-            </div>
+            <div id="categoryContainer"></div>
           </div>
-          <div id="plants-container" class="grid grid-cols-3 gap-5"></div>
-          <div>
-            <h1>Your Cart</h1>
+          <div
+            id="plants-container"
+            class="grid grid-cols-1 md:grid-cols-3 gap-5"
+          ></div>
+          <div id="cardContainer">
+            <h1 class="text-nowrap font-bold text-xl" >Your Cart</h1>
+            <div id="yourCardContainer">
+              
+            </div>
+            <div class="text-nowrap font-semibold py-2 text-xl bg-white text-right"  >
+              <p class="pr-5 ">Total:৳ <span id="totalPrice" class="font-medium">0</span></p>
+            </div>
           </div>
         </div>
       </section>
@@ -218,6 +225,26 @@
             </button>
           </form>
         </div>
+      </section>
+
+      <!-- modal -->
+      <section>
+        <!-- Open the modal using ID.showModal() method -->
+        <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+        <dialog
+          id="plantDetailsModal"
+          class="modal modal-bottom sm:modal-middle"
+        >
+          <div class="modal-box">
+            <div id="modalDetails"></div>
+            <div class="modal-action">
+              <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button class="btn">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
       </section>
     </main>
     <footer class="bg-[#14532D] py-6">
