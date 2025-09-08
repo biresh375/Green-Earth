@@ -16,20 +16,18 @@ const manageSpinner = (status) => {
 };
 
 const allPlantsLoad = () => {
-  manageSpinner(true)
+  manageSpinner(true);
   fetch("https://openapi.programming-hero.com/api/plants")
     .then((res) => res.json())
     .then((json) => displayPlants(json.plants));
 };
 
-document.getElementById("alltrees").addEventListener("click",()=>{
-  
+document.getElementById("alltrees").addEventListener("click", () => {
   removeActive();
   allPlantsLoad();
   const activeBtn = document.getElementById("alltrees");
-      activeBtn.classList.add("active");
-      
-})
+  activeBtn.classList.add("active");
+});
 
 const loadCategory = () => {
   fetch("https://openapi.programming-hero.com/api/categories")
@@ -85,7 +83,7 @@ const displayYourCard = (cardDetail) => {
                   <h1 class="text-nowrap font-semibold text-xl">${cardDetail.name}</h1>
                   <p >৳<span>${cardDetail.price}</span></p>
                 </div>
-                <div><span class="remove">❌</span></div>
+                <div><span class="remove cursor-pointer">❌</span></div>
               </div>`;
   yourcard.append(newCard);
 };
@@ -141,7 +139,7 @@ const displayCategoryByPlants = (categoryByPlants) => {
     categoryCard.innerHTML = `
         <div class="card p-4 bg-white space-y-3 shadow-lg ">
               <img class="h-80 rounded-md" src="${categoryByPlant.image}" alt="">
-              <h1 onclick="loadPlantDetail(${categoryByPlant.id})" class="text-xl font-bold">${categoryByPlant.name}</h1>
+              <h1 onclick="loadPlantDetail(${categoryByPlant.id})" class="text-xl font-bold cursor-pointer">${categoryByPlant.name}</h1>
               <p class="text-[#1F2937]">${categoryByPlant.description}</p>
               <div class="flex justify-between items-center">
                 <span class="border-none btn text-[#15803D] rounded-full bg-[#DCFCE7]">${categoryByPlant.category}</span>
@@ -164,7 +162,7 @@ const displayCategories = (categories) => {
     const categoryName = document.createElement("div");
     categoryName.innerHTML = `
              <div id="categoryBtn-${category.id}" onclick=loadCategoryByPlants(${category.id})
-              class="hover:text-white hover:bg-[#1ec15a] rounded-md text-nowrap py-2 px-6"
+              class="hover:text-white hover:bg-[#1ec15a] rounded-md text-nowrap py-2 px-6 cursor-pointer"
             >
               <h1 class="font-semibold">${category.category_name}</h1>
             </div>
@@ -184,7 +182,7 @@ const displayPlants = (plants) => {
     card.innerHTML = `
         <div class="card p-4 bg-white space-y-3 shadow-lg ">
               <img class="h-80 rounded-md" src="${plant.image}" alt="">
-              <h1 onclick="loadPlantDetail(${plant.id})"  class="text-xl font-bold">${plant.name}</h1>
+              <h1 onclick="loadPlantDetail(${plant.id})"  class="text-xl font-bold cursor-pointer">${plant.name}</h1>
               <p class="text-[#1F2937]">${plant.description}</p>
               <div class="flex justify-between items-center">
                 <span class="border-none btn text-[#15803D] rounded-full bg-[#DCFCE7]">${plant.category}</span>
@@ -197,7 +195,7 @@ const displayPlants = (plants) => {
         `;
     plantsContainer.append(card);
   }
-  manageSpinner(false)
+  manageSpinner(false);
 };
 loadCategory();
 allPlantsLoad();
