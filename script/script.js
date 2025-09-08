@@ -140,7 +140,7 @@ const displayCategoryByPlants = (categoryByPlants) => {
         <div class="card p-4 bg-white space-y-3 shadow-lg ">
               <img class="h-80 rounded-md" src="${categoryByPlant.image}" alt="">
               <h1 onclick="loadPlantDetail(${categoryByPlant.id})" class="text-xl font-bold cursor-pointer">${categoryByPlant.name}</h1>
-              <p class="text-[#1F2937]">${categoryByPlant.description}</p>
+              <p class="text-[#1F2937] line-clamp-2 ">${categoryByPlant.description}</p>
               <div class="flex justify-between items-center">
                 <span class="border-none btn text-[#15803D] rounded-full bg-[#DCFCE7]">${categoryByPlant.category}</span>
                 <p class="font-bold">৳${categoryByPlant.price}</p>
@@ -183,7 +183,7 @@ const displayPlants = (plants) => {
         <div class="card p-4 bg-white space-y-3 shadow-lg ">
               <img class="h-80 rounded-md" src="${plant.image}" alt="">
               <h1 onclick="loadPlantDetail(${plant.id})"  class="text-xl font-bold cursor-pointer">${plant.name}</h1>
-              <p class="text-[#1F2937]">${plant.description}</p>
+              <p class="text-[#1F2937] line-clamp-2">${plant.description}</p>
               <div class="flex justify-between items-center">
                 <span class="border-none btn text-[#15803D] rounded-full bg-[#DCFCE7]">${plant.category}</span>
                 <p class="font-bold">৳${plant.price}</p>
